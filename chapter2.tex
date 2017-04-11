@@ -66,31 +66,31 @@ Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\
 \section{Existing Applications}
 \label{sec:diagrams}
 
-Figure~\ref{fig:fig-eg} is a figure previously prepared using the
-\texttt{xfig} interactive drawing package. With the latest version of
-\texttt{xfig} it is quite easy to incorporate \texttt{xfig} diagrams.
-The \texttt{xfig} package is menu driven and reasonably self
-explanatory.
+There are not many directly relevant applications. I think the reason for this is that in order to produce a meaningful application you need a well formed dataset. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected it's not going to be possible to make educated conclusions on allergy hotspots.
 
-Use the \emph{Export} menu option to save an encapsulated PostScript
-version of your figure, which can then be included in the document
-using the \verb=\includegraphics= command. Choose the \emph{Portrait}
-orientation option. For example, if the figure is in the file \textsf{
-  figure1.fig}, the exporting process will create a file \textsf{
-  figure1.eps}, which can then be included, scaled to whatever height
-or width you want.
+\subsection{Britain Breathing}
+Britain Breathing have a Data Visualiser on their website. It provides a simple display of the allergy data for a particular data range and a particular data value. At the time of writing this report the Visualiser is not working so I can only display a screenshot of the interface and not the actual visualisation.
 
+\begin{SCfigure}
+\caption{Britain Breathing Visualiser Interface}\\
+\centering
+\includegraphics[width=0.75\textwidth]{bbvisinterface}
+\centering
+\end{SCfigure}\\
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=10cm]{figure1} % This scales the picture to
-                                      % a width of 10cm
-                                      % You can scale to the
-                                      % width or height you need
-\end{center}
-\caption{Final version of the system}
-\label{fig:fig-eg}  
-\end{figure}
+\subsection{Pollen forecast}
+
+The closest you can get to Inhale is pollen forecast services such as Pollen.com's Allergy forecast Map. As the name suggests it only shows the pollen forecasts, and whilst this will have some correlation to the Allergy symptoms, pollen is only a small part of the problem.\\
+
+To get a good indication of allergy symptoms, unsurprisingly, you need allergy symptom data.\\
+
+\begin{SCfigure}
+\caption{Pollen.com Allergy Forecast Map}\\
+\centering
+\includegraphics[width=0.75\textwidth]{pollenforecast}
+\centering
+\end{SCfigure}\\
+
 
 Note that, if you want to use such graphics facilities in some other
 document, which does not use either the \texttt{third-rep} or

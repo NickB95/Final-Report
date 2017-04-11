@@ -28,7 +28,21 @@ As you can see, there is a huge variety of factors contributing to allergies. It
 
 \section{Britain Breathing}
 
+Britain Breathing is a Citizen Science project run by the British Society for Immunology, Royal Society of Biology and the University of Manchester Immunology Group. They collect data on seasonal allergies using a simple but effective mobile application available on Android.\\
 
+\begin{SCfigure}
+\caption{Screenshots from the data collection screen on the Britain Breathing Android app}\\
+\centering
+\includegraphics[width=6cm, height=8cm]{bbapp}
+\centering
+\includegraphics[width=6cm, height=8cm]{bbapp2}
+\end{SCfigure}\\
+
+Dr. Markel Vigo who is part of the Britain Breathing project was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values that attempt to measure the severity of certain symptoms such as how bad the users nasal symptoms are. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
+
+See Table 2.1 for an example of the data provided by Britain Breathing.
+
+As the data contains many different symptom areas, I will have to focus my efforts on one particular problem. Trying to cover nose, eye and breathing problems would be too much for this project. I decided to focus on the allergy score. In the Implementation chapter I will go into further detail of how I combine all of the data attributes but still keep my focus on Asthma.
 
 Here are a couple of mathematical formulae:
 
@@ -38,14 +52,14 @@ environment.  Environments such as tabular can be used in ordinary
 text as well.
 \begin{table}
 \begin{center}
-\begin{tabular}{|r|c|c|c|}\hline\hline
-place&1991&1992&1993\\\hline
-CS Dept& 1&99&199\\
-Owens Park& 1876& 22&0\\
-Academy&0&0&99999\\\hline\hline
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c}\hline\hline
+Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\\hline
+0&0&0&0&1&1&0&54.10&-2.39\\
+3&0&2&3&1&1&1&53.89&-2.79\\
+3&1&0&3&1&1&1&53.24&-2.34\\\hline\hline
 \end{tabular}
 \end{center}
-\caption{Distribution of Wombats in Greater Manchester}\label{wombat}
+\caption{Simplified example of Britain Breathing dataset}\label{wombat}
 \end{table}
 
 

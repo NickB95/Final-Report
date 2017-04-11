@@ -1,25 +1,38 @@
-\chapter[Short Chap title]{This chapter has a very long title that would be too long for using in headers and table of contents}
-\section{Image processing}
+\chapter{Background}
+\label{cha:back}
+
+In this chapter I will cover the context of my project to allow a reader to understand the more complex parts of the report to come.\\
+First I will explain the different symptoms that can be felt from hay fever and how they might be caused by different allergens.\\
+I will then talk about the main data set used throughout and how I interpreted the data to produce meaninful results.\\
+
+\section{Seasonal Allergies}
 Because Image processing is such a large topic no attempt will be made
 here to describe the entire subject here but only areas directly
 relevant to the project as a whole. Note how we can cross reference
-sections of the document such as section~\ref{pg:filters}
+sections of the document such as section
 
-\section{Low level operations}
-\label{pg:filters}
-Here is an example of a list with bullets:
+\subsection{Asthma}
+When talking about hay fever, most assume that it only affects the nose. However, in a study by Eur Respir J. it was found that 20.4\% of allergy sufferers also self-reported suffering from asthma.\cite{rhinitis}\\
+
 \begin{itemize}
-\item{\it Mean} Take the mean value of the neighbourhood.
-
-\item{\it Median Filter} Take the median value of the neighbourhood.
+  \item infections : particularly infections of the upper airways, such as colds and flu
+  \item allergens : including pollen, dust mites, animal fur ("dander") or feathers
+  \item airborne irritants : including cigarette smoke, fumes and pollution
+  \item medicines : particularly painkillers called non-steroidal anti-inflammatory drugs (NSAIDs), which include aspirin and ibuprofen, and beta-blockers
+  \item emotions : including stress or laughter
+  \item food additives : including sulphites (often found in pickled products, wine, beer and dried fruit) and tartrazine (a yellow food colouring)
+  \item weather conditions : including sudden changes in temperature, cold air, windy days, thunderstorms and hot, humid days
+  \item indoor conditions : including mould or damp and chemicals in carpets and flooring materials
+  \item exercise
+  \item food allergies : including allergies to nuts and other foods
 \end{itemize}
 
+\cite{urlasthmacauses}
+
+\section{Britain Breathing}
+
 Here are a couple of mathematical formulae:
-\begin{quote}
-\centering
-$\Delta_1=I(x,y)-I(x+1,y+1)$ \\
-$(x-a)^2+(y-b)^2=R^2$
-\end{quote}
+
 
 A table is just like a figure. Table~\ref{wombat} uses the tabular
 environment.  Environments such as tabular can be used in ordinary
@@ -37,7 +50,7 @@ Academy&0&0&99999\\\hline\hline
 \end{table}
 
 
-\section{Creating Diagrams}
+\section{Existing Applications}
 \label{sec:diagrams}
 
 Figure~\ref{fig:fig-eg} is a figure previously prepared using the

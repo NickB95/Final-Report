@@ -1,12 +1,38 @@
 \chapter{Design}
 \label{cha:des}
-Whenever you wish to refer to books or articles relevant to your report
-you should use a citation such as \cite{lamport}. You can also force
-entries to appear in the bibliography without  a citation appearing in
-the document, by using \verb=\nocite=.  
+In this Design section, I'll explain how and why I chose the Software Architecture I did, and what tools I used to develop Inhale. I won't go into the details, just enough so that the Design choices are justified.
 
-%% This nocite produces 2 entries in the bibliography
-\nocite{boyle,rd-only} 
+\section{Architecture Choice}
+
+As all of the datasets I'll be using for Inhale will be geographical datasets, meaning they all have a location attribute, it is imperative that they are displayed on a map. Trying to make any sense of a geographical dataset without seeing it on a familiar map is nearly impossible.\\
+
+
+
+\subsection{ArcGIS by Esri}
+
+ArcGIS is an incredibly powerful contextual tool for mapping and spatial reasoning. Its features are so well made that I initially thought using some form of this software would be the only viable solution. It allows you to produce good looking, user friendly maps with very few lines of code. It  also provides a mass of data processing tools, including hotspots analysis and data correlation.\\
+
+Ultimately, I chose not to go with ArcGIS as it costs around £1200 for one license. However I also wanted to implement my own algorithms, using ArcGIS would not leave me with much to implement, and after all, this is a computer science project. I can see how ArcGIS could be incredibly useful for businesses and marketing/pr.
+
+\subsection{Desktop Mapping Tools}
+
+There are various desktop mapping tools available, even open source options that have a good variety of features. The main issue with this style of mapping software is it's expandability, accessibility and familiarity.\\
+
+Although tools like MapSphere allow you to make 3rd party plugins to expand the standard application with your own features, the features you're given access to when developing those plugins is quite limited. I want the scope to be able to implement whatever I want. 
+Being a desktop application, you're cutting down your potential users, not everyone wants to download an application, it feels too heavy and sluggish for modern users when you can access perfectly able maps from our pockets in the form of smartphone apps and websites. I wanted Inhale to be familiar to the user, I wanted to use controls people are used to using from their everyday use of Google Maps, Waze etc. All of the free desktop applications I tried felt very old and sluggish.\\
+
+\subsection{Google Maps}
+
+After playing around with ArcGIS and desktop mapping tools, I was aiming more towards a solution involving a dynamic mapping provider. Google Maps does not need an introduction. Google have an API that allows developers to implement their own features, toolbars and map tiles. The API can provide maps on various platforms from Android, iOS, javascript and more.\\
+
+The biggest draw towards Google Maps is their places API, it allows you to search for establishments, geographic locations, or prominent points of interest\cite{googlePlaces} in a well defined area around a point. This would be incredibly useful for Inhale as once a hotspot is identified, you could search for nearby places that may be contributing to the symptoms in that area. The only problem here is that it's very difficult to implement a general approach to getting nearbly places that have an affect. Google sort their places by type, the types are aimed towards general public use. They're in categories such as art gallery, bakery, bank, pharmacy, hospital. Whilst it could be argued that you could count the number of commercial premises nearby, but I don't believe this is enough to provide any sort of answer to allergy hotspots.\\
+
+Google Map's main downfall is the lack of customisability, it lacks some features compared to other mapping options.
+
+If Google ever increase the number of categories, or maybe include more general options such as "industrial" or "factory" then it would definitely be the best option.\\
+
+\subsection{Leaflet}
+
 
 Each document cited must have an entry in a \textsf{.bib} file. For this
 document we have only one, called \textsf{refs.bib}. These files are

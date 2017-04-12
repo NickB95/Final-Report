@@ -25,13 +25,32 @@ Being a desktop application, you're cutting down your potential users, not every
 
 After playing around with ArcGIS and desktop mapping tools, I was aiming more towards a solution involving a dynamic mapping provider. Google Maps does not need an introduction. Google have an API that allows developers to implement their own features, toolbars and map tiles. The API can provide maps on various platforms from Android, iOS, javascript and more.\\
 
-The biggest draw towards Google Maps is their places API, it allows you to search for establishments, geographic locations, or prominent points of interest\cite{googlePlaces} in a well defined area around a point. This would be incredibly useful for Inhale as once a hotspot is identified, you could search for nearby places that may be contributing to the symptoms in that area. The only problem here is that it's very difficult to implement a general approach to getting nearbly places that have an affect. Google sort their places by type, the types are aimed towards general public use. They're in categories such as art gallery, bakery, bank, pharmacy, hospital. Whilst it could be argued that you could count the number of commercial premises nearby, but I don't believe this is enough to provide any sort of answer to allergy hotspots.\\
+The biggest draw towards Google Maps is their places API, it allows you to search for establishments, geographic locations, or prominent points of interest in a well defined area around a point \cite{googlePlaces}. This would be incredibly useful for Inhale as once a hotspot is identified, you could search for nearby places that may be contributing to the symptoms in that area. The only problem here is that it's very difficult to implement a general approach to getting nearbly places that have an affect. Google sort their places by type, the types are aimed towards general public use. They're in categories such as art gallery, bakery, bank, pharmacy, hospital. Whilst it could be argued that you could count the number of commercial premises nearby, but I don't believe this is enough to provide any sort of answer to allergy hotspots.\\
 
 Google Map's main downfall is the lack of customisability, it lacks some features compared to other mapping options.
 
 If Google ever increase the number of categories, or maybe include more general options such as "industrial" or "factory" then it would definitely be the best option.\\
 
 \subsection{Leaflet}
+
+Leaflet is a javascript library for mobile-friendly interactive apps \cite{leaflet}. Leaflet is comparable to Google Maps in that it has many of the same features. Leaflet is open source, has many third party plugins with a thriving community contributing daily towards building a versatile dynamic mapping tool.\\
+
+I decided to use Leaflet for my project as it is the most customisable of all the options investigated so far. It allows me to develop whatever I want to, and make my map look exactly how I want it.\\
+
+One particular third party plugin that drew me towards Leaflet was heatmap.js. Heatmaps seem like the best way to present the results of a hotspot identification algorithm. After testing the built-in Google Maps heatmap, I was disappointed with both the speed and custom options available.\\
+
+Leaflet was chosen because it can be used in a web format, it is very customisable and it has a lively community contributing to features all the time. I would be easy to add necessary features further down the line.
+
+\section{Leaflet}
+
+Talk about how you use leafet.
+
+So, once the data is ready to be displayed, you pass to leaflet as heatmap layer.
+
+Deals with layers
+
+Tiles - Simplicity - familiarity
+
 
 
 Each document cited must have an entry in a \textsf{.bib} file. For this

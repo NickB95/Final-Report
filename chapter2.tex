@@ -44,20 +44,16 @@ When setting up the app, you're asked standard registration questions such as yo
 \includegraphics[width=6cm, height=8cm]{bbapp2}
 \end{SCfigure}\\
 
-Dr. Markel Vigo who is part of the Britain Breathing project was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values that attempt to measure the severity of certain symptoms such as how bad the users nasal symptoms are. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
+Dr. Markel Vigo works with the Britain Breathing project and was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values that attempt to measure the severity of certain symptoms such as how bad the users nasal symptoms are. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
 
-See Table 2.1 for an example of the data provided by Britain Breathing.
+See \ref{bbdatatable} for an example of the data provided by Britain Breathing.
 
-As the data contains many different symptom areas, I will have to focus my efforts on one particular problem. Trying to cover nose, eye and breathing problems would be too much for this project. I decided to focus on the allergy score. In the Implementation chapter I will go into further detail of how I combine all of the data attributes but still keep my focus on Asthma.
-
-Here are a couple of mathematical formulae:
+As the data contains many different symptom areas, I will have to focus my efforts on one particular problem. Trying to cover nose, eye and breathing problems would be too much for this project.
 
 
-A table is just like a figure. Table~\ref{wombat} uses the tabular
-environment.  Environments such as tabular can be used in ordinary
-text as well.
 \begin{table}
 \begin{center}
+Britain Breathing Allergy Symptoms\\
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c}\hline\hline
 Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\\hline
 0&0&0&0&1&1&0&54.10&-2.39\\
@@ -65,13 +61,49 @@ Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\
 3&1&0&3&1&1&1&53.24&-2.34\\\hline\hline
 \end{tabular}
 \end{center}
-\caption{Simplified example of Britain Breathing dataset}\label{wombat}
+\caption{Simplified example of the ~18,400 record Britain Breathing dataset}\label{bbdatatable}
 \end{table}
+
+The Britain Breathing dataset will be the base for the entire project. Most of my time was spent with this set establishing a good hotspot identification algorithm.
 
 \subsection{Other Datasets}
 
+Whilst early testing and development involved many datasets, I decided on two main sets to use for the final version of Inhale.\\
+
+The data.gov website has a road traffic count dataset available for public use. The set contains  750,000 entries for major road traffic counts at locations all over the UK. The sets give a location of the Centre Point of the count and for the northmost and southmost junctions on either side of the Centre Point. For each record, the counts for different vehicle types are given. Vehicles are categorised into Cars, Buses, Large Goods Vehicles (LGV), Heavy Goods Vehicle Rigid axle (HGVRx) where x is the number of axles of the HGVR.\\
+
+See \ref{RoadTrafficData} for a simplified version of the dataset.\\
+
+The second set used is the large urban areas in the UK. The data is fairly simple consisting of a location feature in the form of a Latitude and Longitude and a name for the area.\\
 
 
+\begin{table}
+\begin{center}
+Road Traffic\\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline\hline
+S Ref E&S REF N&Road&A REF E&A REF N&Hour&CAR&BUS&LGV&HGVR2&...\\\hline
+90200&10585&A3112&90320&10530&7&24&6&13&5&...\\
+380927&405391&M60&382819&405920&15&7642&18&300&64&...\\
+380927&405391&M60&382819&405920&17&10042&32&654&103&...\\\hline\hline
+\end{tabular}
+
+\caption{Simplified example of the 750,000 record Road Traffic dataset. 20 columns have been removed for viewing purposes.}\label{RoadTrafficData}
+\end{center}
+\end{table}
+
+\section{Using Datasets}
+
+The number of people suffering from allergic rhinitis is rising\cite{allergyrising}, and whilst increased carbon emissions are lengthening the pollen season \cite{co2pollen}, there are not significantly more pollen producing plants and trees year on year.\\
+
+The main pollutants emitted by combustion engine vehicles are;\cite{vehcemis}
+
+\begin{itemize}
+    \item CO
+    \item $SO_2$
+    \item $NO_x$
+\end{itemize}
+
+It has been proven that these pollutants, whilst maybe not associated with hay fever symptoms by most, are actually all directly associated with allergic rhinitis\cite{airPollution}. With this in mind, we can compare the Road Traffic dataset with the Britain Breathing dataset on the same map to try to find some correlation.\\
 
 \section{Existing Applications}
 \label{sec:diagrams}
@@ -94,7 +126,7 @@ Britain Breathing have a Data Visualiser on their website. It provides a simple 
 
 \subsection{Pollen forecast}
 
-The closest you can get to Inhale is pollen forecast services such as Pollen.com's Allergy forecast Map. As the name suggests it only shows the pollen forecasts, and whilst this will have some correlation to the Allergy symptoms, pollen is only a small part of the problem.\\
+The closest you can get to Inhale is pollen forecast services such as Pollen.com's Allergy forecast Map. As the name suggests it only shows the pollen forecasts not allergy, and whilst this will have some correlation to the Allergy symptoms, pollen is only a small part of the problem.\\
 
 To get a good indication of allergy symptoms, unsurprisingly, you need allergy symptom data.\\
 

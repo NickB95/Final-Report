@@ -80,6 +80,13 @@
 %% End of preamble, the actual document starts here
 %%
 
+\usepackage{environ}
+\NewEnviron{myequation}{%
+\begin{equation}
+\scalebox{2}{$\BODY$}
+\end{equation}
+}
+
 \begin{document}
 
 %% This actually creates the title and abstract pages

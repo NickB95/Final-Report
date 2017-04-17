@@ -41,6 +41,8 @@ Upon zooming in and inspecting the data I also found that some roads were stored
 
 I created a java program to process the data before being stored on the server. Java was chosen purely because I have most experience with it and I knew exactly how to read and write files, making it a good choice for pre-processing the Road Traffic data. For each entry, counts are discarded if the length of the distance between the junction before and the junction after is longer than 200km or if the road is shorter than 5km and has a density in the lower 5\% of the data. Removing the smaller roads like this removes the mess of small roads with negligible traffic in places like the north of Scotland. These roads don't provide much information and therefore do not help to find hotspots, they just make the map look cluttered.\\
 
+\subsection{Analysis Field}
+
 \section{Heatmap Generation}
 
 Once the data is in a useable format and condition, I need to display that data on a map. In this section will explain the steps taken to get to point where I have a allergy symptom hotspot represented as a heatmap using Leaflet.\\
@@ -68,7 +70,7 @@ The next step after filling the Hotspot Array with the data is to do some hotspo
 
 \subsection{Spatial Autocorrelation}
 
-Determining if an area is a hotspot or not can be done using Spatial Autocorrelation (SA). SA is a way of giving a numerical value to the degree of which an area is similar to nearby areas \cite{autocor} . A high positive value indicates that an area has a statistically significant value when compared to its neighbours and should be indicated as a hotspot. A low positive or negative value indicates that it is likely that the value is randomly clustered. A high negative value shows a cluster of low values. See Figure \ref{fig:autcor2}\\
+Determining if an area is a hotspot or not can be done using Spatial Autocorrelation (SA). SA is a way of giving a numerical value to the degree of which an area is similar to nearby areas \cite{autocor} . A high positive value indicates that an area has a statistically significant value when compared to its neighbours and should be indicated as a hotspot. A low positive or negative value indicates that it is likely that the value is randomly clustered. A high negative value shows a cluster of low values. See Figure \ref{fig:autocor2}\\
 
 \begin{SCfigure}
 \label{fig:autocor2}
@@ -80,7 +82,7 @@ Determining if an area is a hotspot or not can be done using Spatial Autocorrela
 
 If an area has a high positive value then we can consider that area a hotspot. So if an area has lots of high positive values they should accumulate to generate a higher allergy symptom score. Equally, if an area has a few high positive values, a few small absolute values and a few large negative values, the algorithm should take this into account and not label the area as a hotspot.\\
 
-A good but effective way of doing this is just to average the z-scores for the area and then use this score in the heatmap.
+An effective way of doing this is to take an average of the z-scores for the area. Then use the average in the heatmap.
 
 \subsection{Distance Calculations}
 
@@ -117,11 +119,19 @@ x&$\mathbf{\frac{1}{x^2}}$&$\mathbf{\frac{1}{x^3}}$&$\mathbf{\frac{1}{x^4}}$\\\h
 
 \subsection{Getis-Ord}
 
+Getis-Ord Gi* is a spatial autocorrelation algorithm. I decided to use Getis-Ord Gi* as the alternative solutions tended not to include the feature being examined in the distance weightings. For this particular usage it is very important to include the immediate area when calculating z-scores as allergen dispersion distances are so small.
 
+Here's the equation;
+
+\begin{myequation}%
+Gi^(*) = \frac{\sum_{j=1}^{n} w_{i,j}x_{j} - \overline{X} \sum_{j=1}^{n} w_{i,j}}{{S \sqrt{\frac{n \sum_{j=1}^{n} w^2_{i,j} - (\sum_{j=1}^{n} w_{i,j})^2}{n-1}}}}
+\end{myequation}
+
+In summary, it takes the Analysis Field and compares it to every other point on the map using the inverse distance function making sure that distant areas have less effect on the resulting value. This is then used to determine whether or not the area is locally statistically significant.
 
 \subsection{Speed issues and the Solution}
 
-\section{Allergy Score}
+Every point gi score relies on every other points - slow
 
 \section{Smart Data Tool}
 

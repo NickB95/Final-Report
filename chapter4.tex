@@ -88,18 +88,36 @@ Calculating the statistical significance of values, and whether or not they are 
 
 There are many ways of calculating the distance between two dimensional points and it's not a particularly interesting topic so I'll keep it brief. I decided to use the Manhattan distance as shown below \ref{dia:manhat}.\\
 
-dist (x, y)  = $\sqrt{ \sum_{i=1}^{n}(x_i - y_i)^2$ }\label{dia:manhat}\\
+dist (x, y)  = \sqrt{\sum_{i=1}^n (x_i - y_i)^2 }
+\label{dia:manhat}\\
 
 \subsection{Using distances}
 
-The closer two points are, the more they will affect each other. It would not be correct to say that a cluster of allergy symptoms in Manchester should have any affect at all on those in Liverpool. So I need a way of using these distances to calculate how much to take the surrounding areas into account. Or as Waldo Tobler's first law of Geography puts it. "everything is related to everything else, but near things are more related than distant things." \ref{waldo}\\
+The closer two points are, the more they will affect each other. It would not be correct to say that a cluster of allergy symptoms in Manchester should have any affect at all on those in Liverpool. So I need a way of using these distances to calculate how much to take the surrounding areas into account. Or as Waldo Tobler's first law of Geography puts it. "everything is related to everything else, but near things are more related than distant things." \cite{waldo}\\
 
+As you know by now, the focus of this project is on the symptoms  of allergies. Most allergen producers do not have a method of mass dispersion. What I mean by that is they do not have a way of dispersing the produced allergens significant distances. Around 2km is normal, with the largest known distance being 21km \cite{pollenwr}. I can use this fact because I want to make sure that my hotspots are location specific and don't take into account the allergen producers over 20km because the chances are that allergens produced by them haven't reached the area.\\
 
+The length of the entire UK is around 874 miles, with the length of the visible map in Inhale being 1000 miles. Divide this by 500 and you get 2 square miles per HotspotArray entry. This means that the average point in an area has a distance of 2 miles to the average point in the area directly to the left, right, up or down. When comparing to neighbouring areas, I want to consider the area directly next to the area in question, and maybe only very slightly consider the areas one square further than those, just to account for other types of allergens which may travel further.\\
 
+I decided to use a inverse distance weighting with a strong fall off for neighbouring areas. See Figure \ref{table:dist} for the calculations used to determine the inverse distance function. I decided to use $\frac{1}{x^3}$ as it has the right amount of drop off for distances of 3 or more but still uses areas of distance two with a 12.5\% factor.\\ 
 
+\begin{table}
+\begin{center}
+Figure \ref{table:dist} : Potential Inverse Distance Functions\\\label{table:dist}
+\begin{tabular}{|c|c|c|c|}\hline\hline
+x&$\mathbf{\frac{1}{x^2}}$&$\mathbf{\frac{1}{x^3}}$&$\mathbf{\frac{1}{x^4}}$\\\hline
+1&1&1&1\\
+2&0.25&0.125&0.0625\\
+3&0.111&0.037&0123\\
+4&0.0625&0.0156&0.0039\\\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 
 \subsection{Getis-Ord}
+
+
 
 \subsection{Speed issues and the Solution}
 

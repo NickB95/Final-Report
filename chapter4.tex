@@ -55,19 +55,53 @@ The Britain Breathing JSON file is loaded from the server. An instance of a Hots
 \centering
 \end{SCfigure}\\
 
-By default, I used a 500 by 500 resolution as I found this gives enough of a resolution so that you can't see the square boundaries at any zoom level but also keeps the map easy to use in calculations. The alternative here would have been to use something like the UK Council boundaries, but I didn't like how they looked on the map. This was mainly due to the fact that dividing the map by Councils meant that you don't get precise enough information on specific allergy symptoms hotspots. A hotspot in a City such as Inverness would cause a massive area inlucding tiny three or four house villages in the middle of the Scottish highlands to be indicated as being a "hotspot".\\
+By default, I used a 500 by 500 resolution as I found this gives enough of a resolution so that you can't see the square boundaries at any zoom level but also keeps the map easy to use in calculations. The alternative here would have been to use something like the UK Council boundaries, but I didn't like how they looked on the map. This was mainly due to the fact that dividing the map by Councils meant that you don't get precise enough information on specific allergy symptoms hotspots. A hotspot in a City such as Inverness would cause a massive area including tiny three or four house villages in the middle of the Scottish highlands to be indicated as being a "hotspot".\\
 
 For each entry in the processed dataset;
 
 \begin{enumerate}
-    \item Add entry to the Hotspot Array. The location of the entry is used to map to an index in the array. For example, a location in the top left of the map would map to [0][0], bottom right would map to [499][499] etc. 
-    \item If there is already a value in the Hotspot Array, add to the total count and update the average for the square area.
+    \item Add entry to the Hotspot Array. The latitude and longitude of the entry is used to map to an index in the array. For example, a location in the top left of the map would map to [0][0], bottom right would map to [499][499] etc. 
+    \item If there is already a value in the Hotspot Array, add to the total count and update the average for the square area. Otherwise, add to the total count and calculate average.
 \end{enumerate}
 
+The next step after filling the Hotspot Array with the data is to do some hotspot identification.
 
-\subsection{Spatial AutoCorrelation}
+\subsection{Spatial Autocorrelation}
+
+Determining if an area is a hotspot or not can be done using Spatial Autocorrelation (SA). SA is a way of giving a numerical value to the degree of which an area is similar to nearby areas \cite{autocor} . A high positive value indicates that an area has a statistically significant value when compared to its neighbours and should be indicated as a hotspot. A low positive or negative value indicates that it is likely that the value is randomly clustered. A high negative value shows a cluster of low values. See Figure \ref{fig:autcor2}\\
+
+\begin{SCfigure}
+\label{fig:autocor2}
+\caption{Figure \ref{fig:autocor2} : Spatial Autocorrelation}\\
+\centering
+\includegraphics[width=0.4\textwidth]{autocor2}
+\centering
+\end{SCfigure}\\
+
+If an area has a high positive value then we can consider that area a hotspot. So if an area has lots of high positive values they should accumulate to generate a higher allergy symptom score. Equally, if an area has a few high positive values, a few small absolute values and a few large negative values, the algorithm should take this into account and not label the area as a hotspot.\\
+
+A good but effective way of doing this is just to average the z-scores for the area and then use this score in the heatmap.
+
+\subsection{Distance Calculations}
+
+Calculating the statistical significance of values, and whether or not they are related to nearby values involves calculating the distance between points.\\
+
+There are many ways of calculating the distance between two dimensional points and it's not a particularly interesting topic so I'll keep it brief. I decided to use the Manhattan distance as shown below \ref{dia:manhat}.\\
+
+dist (x, y)  = $\sqrt{ \sum_{i=1}^{n}(x_i - y_i)^2$ }\label{dia:manhat}\\
+
+\subsection{Using distances}
+
+The closer two points are, the more they will affect each other. It would not be correct to say that a cluster of allergy symptoms in Manchester should have any affect at all on those in Liverpool. So I need a way of using these distances to calculate how much to take the surrounding areas into account. Or as Waldo Tobler's first law of Geography puts it. "everything is related to everything else, but near things are more related than distant things." \ref{waldo}\\
+
+
+
+
+
+
 \subsection{Getis-Ord}
 
+\subsection{Speed issues and the Solution}
 
 \section{Allergy Score}
 

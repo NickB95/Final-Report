@@ -170,10 +170,36 @@ In summary, it takes the Analysis Field and compares it to every other point on 
 
 \subsection{Speed issues and the Solution}
 
-Every point gi score relies on every other points - slow
+When calculating the Getis-Ord Gi* values for each area in the 500 by 500 array, you need to calculate the distance between that area and every other area. This quickly becomes a large problem of scale $O(n^2)$. Even though the distance calculations are very fast, the total time to run the Getis-Ord calculations was 14 seconds. As Inhale is hosted online, users will be expecting a much faster, more fluid experience.\\
+
+The Britain Breathing dataset is displayed by default every time you open the website. However, no changes are made to the data, the Getis-Ord calculations are stable so that the same input will always produce the same output so I can store the output from the Getis-Ord calculations so that I don't have to do them every time.\\
+
+I implemented a cache system to speed up the process wherever possible. The process keeps in mind possible future updates where the user can change the base data and so is prepared to calculate the Getis-Ord calculations if necessary.\\
+
+\begin{enumerate}
+    \item Compute MD5 hash of input array
+    \item Check if JSON HashMap contains an entry for the input
+    \item If contains entry - pull the corresponding output array. Otherwise - compute Getis-Ord.
+\end{enumerate}
+
+When the cache finds a hit, the time taken plummets to an average over 7 runs of 120ms, a marked improvement over 14,000ms. This change was one of the simplest, but made a huge difference to the useability of Inhale.
 
 \section{Smart Data Tool}
 
-Now that I have some good datasets and I understand how they effect each other, I need a way o
+I display the Britain Breathing dataset and allow the user to compare it to the Road Traffic set. I would have liked to have compared to more datasets, but there are not many good, relevant geographical datasets available online. The majority cost money or are entirely private. However, this should not stop Inhale from being used by those with access to those datasets from comparing their sets to allergies.\\
 
-How relate dataset to specific allergies and symptoms
+I implemented a Smart Data Tool (SDT). It introduces the capability to upload your own dataset to be compared. The SDT can parse csv, tsv or JSON. For a dataset to be displayed on the map, it needs to have a location attribute. This is usually a Latitude/Longitude pair, or a Northing/Easting pair. SDT automatically detects these from the dataset and attempts to map them for you.\\
+
+The SDT also asks for a "Value Field", this is the field that will be used as the Analysis field in representations that require hotspot identification, or it can be used as a label in datasets that only require a simple marker for each entry. For example, in Figure \ref{fig:sdt}, the uk-towns-sample.csv has automatically detected the Latitude and Longitude fields, and allows you to select an appropriate label for the marker tooltip to display when hovered over.\\
+
+\caption{Figure \ref{fig:sdt} : Smart Data Tool Town Example\label{fig:sdt}}\\
+\centering
+\includegraphics[width=0.4\textwidth]{sdt}\includegraphics[width=0.4\textwidth]{sdt15}
+\centering
+
+\\And Figure \ref{fig:sdt2} shows the result when the uk-towns-sample.csv dataset is drawn with the allergy symptoms heatmap behind.\\\\
+
+\caption{Figure \ref{fig:sdt2} : Smart Data Tool Town Map\label{fig:sdt2}}\\
+\centering
+\includegraphics[width=0.4\textwidth]{sdt2}
+\centering

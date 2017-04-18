@@ -43,6 +43,45 @@ I created a java program to process the data before being stored on the server. 
 
 \subsection{Analysis Field}
 
+The Britain Breathing dataset has many attributes that are relevant to allergy symptoms.\\
+
+Figure \ref{table:bbdata} : Britain Breathing Dataset Allergy Related Attributes\\\label{table:bbdata}
+\begin{tabular}{|c|c|c|c|}\hline\hline
+Attribute&Represents&Range&Range Description\\\hline
+how\_feeling&General well-being of the person&0..2&0 Best, 2 Worst\\
+breathing&Condition of lungs and trachea&0..2&0 Best, 2 Worst\\
+eyes&Condition of the eyes&0..2&0 Best, 2 Worst\\
+nose&Condition of the nose&0..2&0 Best, 2 Worst\\
+hayfever&Suffers from hay fever&0..1&0 no, 1 yes\\
+asthma&Suffers from asthma&0..1&0 no, 1 yes\\
+taken\_meds\_today&Taken allergy medication&0..1&0 no, 1 yes\\\hline\hline
+\end{tabular}
+
+All of the attributes in Figure \ref{table:bbdata} contribute to the overall severity of a persons allergy symptoms on any given day. In order to use with hotspot identification algorithms, I need a single attribute that is a summary of the others. I need to combine them all into one value that can be used to score a certain records Allergy Score, or more generically to fit the Road Traffic dataset too, the Analysis Field.\\
+
+In the development of the Analysis Field for the Britain Breathing dataset, I made some initial judgements and then adjusted the parameters with some trial and improvement. The Analysis field needs to be a summary of the others. Keeping this in mind, I assigned a high priority to the how\_feeling attribute as it itself is a summary of the persons general allergy related feeling. I then assigned breathing, nose and eyes with roughly similar weightings. I used the taken\_medication\_today as a multiplier for the breathing, nose and eye symptoms using the logic that if a person has taken their medication and is still suffering, then they should score higher than someone with the same values for the other attributes but has not taken their medication. hayfever and asthma attributes are used, but do not have much of an effect on the Analysis Field.\\
+
+\begin{myequation2}%
+Analysis Field (AF) = 2*(how\_feeling*(0.5*nose + 0.3*eyes + 0.3*breathing))
+\end{myequation2}
+\begin{myequation2}%
++ (taken\_meds\_today*(nose + eyes + breathing)) + asthma + hayfever
+\end{myequation2}
+
+The above formula is used to calculate the Analysis field in the final version of Inhale. It seems to work well, I'm happy it uses a wide spread of attributes but still focuses on the main four; how\_feeling, nose, breathing and eyes.\\
+
+The Analysis field for the Road Traffic dataset was simpler. To keep the field relevant to allergies, I decided to focus on the emissions from vehicles on that road per hour. At first I simply found that the average $CO_2$ emissions for a combustion engine vehicle was 411 g/mile or 274g/km and I multiplied the total traffic count by this value \cite{trafficemiss}. The traffic counts were not anywhere near perfectly distributed. Different roads had very different distributions of vehicle types. For example, the two main corridors between the North and South of England, the M6 on the East and the A1 on the West both had far higher percentages of HGV type vehicles than average.\\
+
+With the disparity in vehicle distribution in mind, I found the average vehicle emissions for each vehicle type instead. Then simply created the Analysis Field as below.
+
+\begin{myequation2}%
+Analysis Field (AF) = \sum_{vt=1}^n VehicleCount * VehicleTypeEmissions
+\end{myequation2}
+
+As previously mentioned, the dataset is not entirely consistent with its junctions before and after the counting point. Ideally, I'd use the vehicle emissions per km and multiply that by the distance between the junction before and after to get a total emission value for the vehicle. Not only would this not be possible due to the problems in the dataset, but it would also produce useless results. It doesn't matter how far a vehicle has travelled on its way to you, only the distance it has travelled in a small radius around you should be considered as this is the area in which its emissions can reach affect you.\\
+
+As a compromise, I simply used the g/km value without taking into account the actual number of km used. This could maybe be improved by calculating the distance of the road that is within x km of the user.
+
 \section{Heatmap Generation}
 
 Once the data is in a useable format and condition, I need to display that data on a map. In this section will explain the steps taken to get to point where I have a allergy symptom hotspot represented as a heatmap using Leaflet.\\

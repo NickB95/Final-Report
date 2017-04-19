@@ -12,9 +12,9 @@ The Britain Breathing dataset in it's raw format contained entries from all over
 \begin{SCfigure}
 \label{fig:RTv1}
 \caption{Figure \ref{fig:RTv1} : Britain Breathing dataset before processing}\\
-\centering
+\begin{center}
 \includegraphics[width=0.75\textwidth]{tableuaeverywhere}
-\centering
+\end{center}
 \end{SCfigure}\\
 
 Approximately 2.7\% of entries had a null value for one of the attributes. 96\% of these nulls were  whether or not the user had existing hay fever or asthma, I decided to remove each of these records entirely, I could also have decided set the attribute to 0 or 1 but I wanted to avoid fabricating data to keep any conclusions made using the data valid.\\
@@ -32,9 +32,9 @@ As you can see from figure \ref{fig:rt} the first version of the Road Traffic da
 \begin{SCfigure}
 \label{fig:rt}
 \caption{Figure \ref{fig:rt} : First attempt at displaying the Road Traffic data}\\
-\centering
+\begin{center}
 \includegraphics[width=0.75\textwidth]{RoadTrafficv1}
-\centering
+\end{center}
 \end{SCfigure}\\
 
 Upon zooming in and inspecting the data I also found that some roads were stored incorrectly in the dataset. Around 10 roads were stored as having their junction before and junction after being the ends of the road. Roads like the A1 can be as long as 396 miles so errors can cause big problems \cite{longestRoad}. In the case of the A1, the entire road was displayed as a deep red indicating a high volume of traffic. For the majority of the A1, this would be true but there are areas of the road that are not particularly busy so they're being wrongly represented. \\
@@ -91,9 +91,9 @@ The Britain Breathing JSON file is loaded from the server. An instance of a Hots
 \begin{SCfigure}
 \label{fig:hh}
 \caption{Figure \ref{fig:hh} : A [5][7] resolution example}\\
-\centering
+\begin{center}
 \includegraphics[width=0.4\textwidth]{hh5x7}
-\centering
+\end{center}
 \end{SCfigure}\\
 
 By default, I used a 500 by 500 resolution as I found this gives enough of a resolution so that you can't see the square boundaries at any zoom level but also keeps the map easy to use in calculations. The alternative here would have been to use something like the UK Council boundaries, but I didn't like how they looked on the map. This was mainly due to the fact that dividing the map by Councils meant that you don't get precise enough information on specific allergy symptoms hotspots. A hotspot in a City such as Inverness would cause a massive area including tiny three or four house villages in the middle of the Scottish highlands to be indicated as being a "hotspot".\\
@@ -114,9 +114,9 @@ Determining if an area is a hotspot or not can be done using Spatial Autocorrela
 \begin{SCfigure}
 \label{fig:autocor2}
 \caption{Figure \ref{fig:autocor2} : Spatial Autocorrelation}\\
-\centering
+\begin{center}
 \includegraphics[width=0.4\textwidth]{autocor2}
-\centering
+\end{center}
 \end{SCfigure}\\
 
 If an area has a high positive value then we can consider that area a hotspot. So if an area has lots of high positive values they should accumulate to generate a higher allergy symptom score. Equally, if an area has a few high positive values, a few small absolute values and a few large negative values, the algorithm should take this into account and not label the area as a hotspot.\\
@@ -193,13 +193,13 @@ I implemented a Smart Data Tool (SDT). It introduces the capability to upload yo
 The SDT also asks for a "Value Field", this is the field that will be used as the Analysis field in representations that require hotspot identification, or it can be used as a label in datasets that only require a simple marker for each entry. For example, in Figure \ref{fig:sdt}, the uk-towns-sample.csv has automatically detected the Latitude and Longitude fields, and allows you to select an appropriate label for the marker tooltip to display when hovered over.\\
 
 \caption{Figure \ref{fig:sdt} : Smart Data Tool Town Example\label{fig:sdt}}\\
-\centering
+\begin{center}
 \includegraphics[width=0.4\textwidth]{sdt}\includegraphics[width=0.4\textwidth]{sdt15}
-\centering
+\end{center}
 
 \\And Figure \ref{fig:sdt2} shows the result when the uk-towns-sample.csv dataset is drawn with the allergy symptoms heatmap behind.\\\\
 
 \caption{Figure \ref{fig:sdt2} : Smart Data Tool Town Map\label{fig:sdt2}}\\
-\centering
+\begin{center}
 \includegraphics[width=0.4\textwidth]{sdt2}
-\centering
+\end{center}

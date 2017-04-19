@@ -27,64 +27,27 @@ The most emphasis was on the identification of allergy hotspots. I wanted a hots
 
 %% Before anything data related, explain hotspots
 
-\section{Project Overview}
+\section{Report Overview}
 
-Presentation
+There are no hard to understand, advanced computer science algorithms or techniques used in this project. However, I do make some decisions that will require some background knowledge and context of the related subjects in order to fully understand my reasoning. So the second chapter will provide a brief history of allergies and how certain types of allergies are relevant to my project.\\
 
-Implementation
-    data set relevance
-    Pre-processing
-    Algorithms
+I'll talk about the structure and content of the datasets used throughout and cover what similar applications already exist.\\
+
+Once the basics are understood, I will take the reader through the design decisions and implementation stages of Inhale in Chapters 3 and 4. I will go into some detail of the core processes, but nothing too heavy.\\
+
+Chapter 5 will explain how I did my testing and how I interpreted the resulting heatmap displayed by Inhale. I'll show you some of the interesting hotspots and how I evaluated them.\\
+
+I'll conclude the report with a summary of my personal experience developing Inhale and my findings using the final product.\\
     
-Testing
-
-Evaluation
-    
-
-\LaTeX\ is not a WYSIWYG system. You first prepare source files,
-\textsf{report.tex} etc., similar to the ones here, using your
-favourite text editor.
-
-The UNIX commands you need to drive \LaTeX\ are:
-\begin{enumerate}
-\item \texttt{latex.} Output from \texttt{latex} can be previewed on
-  the screen with \texttt{xdvi} or \texttt{gsprev} (under X), and printed on the laserprinter using  \texttt{dvips}.
-  \texttt{latex} produces \textsf{.dvi} files which are used by
-  \texttt{xdvi} or \texttt{gsprev} and \texttt{dvipr}.  To get all the
-  cross references and the table of contents correct you sometimes
-  need to run this command twice in succession.  Keep on re-running
-  until the advice to rerun at the end of the output goes away.
-
-  Many people now use \texttt{pdflatex} instead of \texttt{latex} to produce \texttt{pdf} files directly.
-  
-\item \texttt{xdvi} or a pdf viewer such as \texttt{xpdf}, \texttt{evince} or \texttt{Preview} (Mac OS X). Previews the document on the
-  screen, again the parameter is \textsf{report} (or \texttt{report.pdf}).
-  
-\item \texttt{dvips.} This is used to print dvi files on the laserprinter.  The
-  parameter is again \texttt{report}. Most pdf previewers provide their own printing interface.
-  
-\item \texttt{xfig}. Can be used to produce diagrams, see
-  section~\ref{sec:diagrams}.
-
-\end{enumerate}
-There are on-line manual pages for each of the commands described above.
-
-The set of files used to produce this document is in
-\textsf{/opt/info/doc/latex} (in one of the subdirectories
-\textsf{3rd-yr} or \textsf{MU-Thesis}).  They are also on the web at 
-
-You will find that for more detailed points you will need to refer to
-Lamport's `\LaTeX\ a document preparation system'~\cite{lamport}
-(Copies in the library  in Blackwell's).
-This example has been written using the most recent version of \LaTeX
-(LaTeX2e), which is described in the \emph{2nd edition} of Lamport's
-book. Buying a cheap copy of the 1st edition is probably not a good
-investment. An alternative to Lamport's book, which some people
-prefer, is `A guide to {\LaTeXe}' by Kopka and Daly~\cite{kopka}. The
-older `A guide to {\LaTeX}'~\cite{kopka-old} by the same authors is
-now obsolete. There is also plenty of support material for \LaTeX\ on the web.
 
 \section{Software Environment}
+
+My environment options for Inhale were to make a Desktop Application for either Windows or MacOS, website, mobile app or a web application.\\
+
+I decided against making a desktop app for any platform as by going with this route it limits the number of users instantly. Whilst the last two versions of Windows make up around 65\% of the Desktop market, that's still a potential 35\% of users that are completely unable to use my software \cite{windows}. As this project is likely to be shown to potential employers, it would be nice to have it on a platform that is easier to setup and get running.\\
+
+A mobile application was a strong contender, with 
+
 \subsection{Occam}
 
 Here is some more example text, showing various \LaTeX\ facilities

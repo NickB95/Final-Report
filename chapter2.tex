@@ -1,9 +1,7 @@
 \chapter{Background}
 \label{cha:back}
 
-In this chapter I will cover the context of my project to allow a reader to understand the more complex parts of the report to come.\\
-First I will explain the different symptoms that can be felt from hay fever and how they might be caused by different allergens.\\
-I will then talk about the main data set used throughout and how I interpreted the data to produce meaninful results.\\
+In this chapter I will cover the context of my project to allow a reader to understand the more complex parts of the report to come. First I will explain the different symptoms that can be felt from hay fever and how they might be caused by different allergens. I will then talk about the main data set used throughout and how I interpreted the data to produce meaningful results.
 
 \section{Seasonal Allergies}
 A massive 44\% of Britons suffer from at least one allergy, most of those suffering from some kind of seasonal allergy. Allergies are on the rise even with modern allergy medication improving.
@@ -36,13 +34,14 @@ Britain Breathing is a Citizen Science project run by the British Society for Im
 
 When setting up the app, you're asked standard registration questions such as your age, gender and then whether you suffer from pre-existing allergy related issues such as asthma and hay fever. In every day use of the Britain Breathing app you are asked to rate the severity of your allergy related symptoms on that particular day. You are also asked whether or not you have taken your allergy medication for that day, without specifying exactly what you take. This data is collected along with your location and stored by Britain Breathing.
 
-\begin{SCfigure}
-\caption{Screenshots from the data collection screen on the Britain Breathing Android app}\\
-\centering
+\begin{figure}[H]
+\begin{center}
 \includegraphics[width=6cm, height=8cm]{bbapp}
-\centering
 \includegraphics[width=6cm, height=8cm]{bbapp2}
-\end{SCfigure}\\
+\caption{Screenshots from the data collection screen on the Britain Breathing Android app}
+\label{fig:bbscrn}
+\end{center}
+\end{figure}
 
 Dr. Markel Vigo works with the Britain Breathing project and was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values that attempt to measure the severity of certain symptoms such as how bad the users nasal symptoms are. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
 
@@ -61,7 +60,7 @@ Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\
 3&1&0&3&1&1&1&53.24&-2.34\\\hline\hline
 \end{tabular}
 \end{center}
-\caption{Simplified example of the ~18,400 record Britain Breathing dataset}\label{bbdatatable}
+\caption{Simplified example of the 18,386 record Britain Breathing dataset}\label{bbdatatable}
 \end{table}
 
 The Britain Breathing dataset will be the base for the entire project. Most of my time was spent with this set establishing a good hotspot identification algorithm.
@@ -117,12 +116,12 @@ Looking at other applications did help highlight that I really was not a fan of 
 \subsection{Britain Breathing}
 Britain Breathing have a Data Visualiser on their website. It provides a simple display of the allergy data for a particular data range and a particular data value. At the time of writing this report the Visualiser is not working so I can only display a screenshot of the interface and not the actual visualisation.
 
-\begin{SCfigure}
-\caption{Britain Breathing Visualiser Interface}\\
-\centering
+\begin{figure}[H]
+\begin{center}
 \includegraphics[width=0.75\textwidth]{bbvisinterface}
-\centering
-\end{SCfigure}\\
+\caption{Figure Britain Breathing Visualiser Interface}
+\end{center}
+\end{figure}
 
 \subsection{Pollen forecast}
 
@@ -130,14 +129,9 @@ The closest you can get to Inhale is pollen forecast services such as Pollen.com
 
 To get a good indication of allergy symptoms, unsurprisingly, you need allergy symptom data.\\
 
-\begin{SCfigure}
-\caption{Pollen.com Allergy Forecast Map}\\
-\centering
+\begin{figure}[H]
+\begin{center}
 \includegraphics[width=0.75\textwidth]{pollenforecast}
-\centering
-\end{SCfigure}\\
-
-% Local Variables: 
-% mode: latex
-% TeX-master: "report"
-% End: 
+\caption{Pollen.com Allergy Forecast Map}
+\end{center}
+\end{figure}

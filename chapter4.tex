@@ -9,13 +9,13 @@ Figure \ref{bbdatatable} shows the raw format of the Britain Breathing dataset. 
 
 The Britain Breathing dataset in it's raw format contained entries from all over the world. I could have decided to leave them on as I could centre the map on the UK so only those who where curious enough to pan around the rest of the globe would see these extra points. But that's more of a novel thing. At the time of pre-processing, I thought the extra points might affect some of the hotspot algorithm calculations such as global averages so I decided to remove all points that are not on mainland UK or in Northern and the Republic of Ireland.\\
 
-\begin{SCfigure}
-\label{fig:RTv1}
-\caption{Figure \ref{fig:RTv1} : Britain Breathing dataset before processing}\\
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{tableuaeverywhere}
+\caption{Britain Breathing dataset before processing}
+\label{fig:RTv1}
 \end{center}
-\end{SCfigure}\\
+\end{figure}
 
 Approximately 2.7\% of entries had a null value for one of the attributes. 96\% of these nulls were  whether or not the user had existing hay fever or asthma, I decided to remove each of these records entirely, I could also have decided set the attribute to 0 or 1 but I wanted to avoid fabricating data to keep any conclusions made using the data valid.\\
 
@@ -29,13 +29,13 @@ The Road Traffic dataset in its raw format was far from being usable.\\
 
 As you can see from figure \ref{fig:rt} the first version of the Road Traffic dataset was way too dense. I needed the dataset to be able to be displayed with the heatmap generated from the Britain Breathing dataset to be visible behind the Road Traffic data in order to compare the two. There were too many roads of very short spans cluttering the view of the heatmap.\\
 
-\begin{SCfigure}
-\label{fig:rt}
-\caption{Figure \ref{fig:rt} : First attempt at displaying the Road Traffic data}\\
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{RoadTrafficv1}
+\caption{First attempt at displaying the Road Traffic data. There's a bit much going on here.}
+\label{fig:rt}
 \end{center}
-\end{SCfigure}\\
+\end{figure}
 
 Upon zooming in and inspecting the data I also found that some roads were stored incorrectly in the dataset. Around 10 roads were stored as having their junction before and junction after being the ends of the road. Roads like the A1 can be as long as 396 miles so errors can cause big problems \cite{longestRoad}. In the case of the A1, the entire road was displayed as a deep red indicating a high volume of traffic. For the majority of the A1, this would be true but there are areas of the road that are not particularly busy so they're being wrongly represented. \\
 
@@ -45,7 +45,7 @@ I created a java program to process the data before being stored on the server. 
 
 The Britain Breathing dataset has many attributes that are relevant to allergy symptoms.\\
 
-Figure \ref{table:bbdata} : Britain Breathing Dataset Allergy Related Attributes\\\label{table:bbdata}
+Figure \ref{table:bbdata} : Britain Breathing Dataset Allergy Related Attributes. 13 attributes removed for simplicity.\\\label{table:bbdata}
 \begin{tabular}{|c|c|c|c|}\hline\hline
 Attribute&Represents&Range&Range Description\\\hline
 how\_feeling&General well-being of the person&0..2&0 Best, 2 Worst\\
@@ -88,13 +88,13 @@ Once the data is in a useable format and condition, I need to display that data 
 
 The Britain Breathing JSON file is loaded from the server. An instance of a HotspotArray is instantiated with parameters including x and y values for the dimension of the desired map resolution. The resolution values are used to create a two dimensional array with sizes [x][y]. This array is used to divide the area of the UK into distinct square areas. See figure \ref{fig:hh} for a small scale example.
 
-\begin{SCfigure}
-\label{fig:hh}
-\caption{Figure \ref{fig:hh} : A [5][7] resolution example}\\
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{hh5x7}
+\caption{A [5][7] resolution example}
+\label{fig:hh}
 \end{center}
-\end{SCfigure}\\
+\end{figure}
 
 By default, I used a 500 by 500 resolution as I found this gives enough of a resolution so that you can't see the square boundaries at any zoom level but also keeps the map easy to use in calculations. The alternative here would have been to use something like the UK Council boundaries, but I didn't like how they looked on the map. This was mainly due to the fact that dividing the map by Councils meant that you don't get precise enough information on specific allergy symptoms hotspots. A hotspot in a City such as Inverness would cause a massive area including tiny three or four house villages in the middle of the Scottish highlands to be indicated as being a "hotspot".\\
 
@@ -111,13 +111,13 @@ The next step after filling the Hotspot Array with the data is to do some hotspo
 
 Determining if an area is a hotspot or not can be done using Spatial Autocorrelation (SA). SA is a way of giving a numerical value to the degree of which an area is similar to nearby areas \cite{autocor} . A high positive value indicates that an area has a statistically significant value when compared to its neighbours and should be indicated as a hotspot. A low positive or negative value indicates that it is likely that the value is randomly clustered. A high negative value shows a cluster of low values. See Figure \ref{fig:autocor2}\\
 
-\begin{SCfigure}
-\label{fig:autocor2}
-\caption{Figure \ref{fig:autocor2} : Spatial Autocorrelation}\\
+\begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.4\textwidth]{autocor2}
+\includegraphics[width=0.8\textwidth]{autocor2}
+\caption{Correlation Types}
+\label{fig:autocor2}
 \end{center}
-\end{SCfigure}\\
+\end{figure}
 
 If an area has a high positive value then we can consider that area a hotspot. So if an area has lots of high positive values they should accumulate to generate a higher allergy symptom score. Equally, if an area has a few high positive values, a few small absolute values and a few large negative values, the algorithm should take this into account and not label the area as a hotspot.\\
 
@@ -129,8 +129,8 @@ Calculating the statistical significance of values, and whether or not they are 
 
 There are many ways of calculating the distance between two dimensional points and it's not a particularly interesting topic so I'll keep it brief. I decided to use the Manhattan distance as shown below \ref{dia:manhat}.\\
 
-dist (x, y)  = \sqrt{\sum_{i=1}^n (x_i - y_i)^2 }
-\label{dia:manhat}\\
+$dist (x, y)  = \sqrt{\sum_{i=1}^n (x_i - y_i)^2 }$
+\label{dia:manhat}
 
 \subsection{Using distances}
 
@@ -192,14 +192,20 @@ I implemented a Smart Data Tool (SDT). It introduces the capability to upload yo
 
 The SDT also asks for a "Value Field", this is the field that will be used as the Analysis field in representations that require hotspot identification, or it can be used as a label in datasets that only require a simple marker for each entry. For example, in Figure \ref{fig:sdt}, the uk-towns-sample.csv has automatically detected the Latitude and Longitude fields, and allows you to select an appropriate label for the marker tooltip to display when hovered over.\\
 
-\caption{Figure \ref{fig:sdt} : Smart Data Tool Town Example\label{fig:sdt}}\\
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{sdt}\includegraphics[width=0.4\textwidth]{sdt15}
+\caption{Smart Data Tool Town Example}
+\label{fig:sdt}
 \end{center}
+\end{figure}
 
-\\And Figure \ref{fig:sdt2} shows the result when the uk-towns-sample.csv dataset is drawn with the allergy symptoms heatmap behind.\\\\
+And Figure \ref{fig:sdt2} shows the result when the uk-towns-sample.csv dataset is drawn with the allergy symptoms heatmap behind.
 
-\caption{Figure \ref{fig:sdt2} : Smart Data Tool Town Map\label{fig:sdt2}}\\
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{sdt2}
+\caption{Smart Data Tool Town Map}
+\label{fig:sdt2}
 \end{center}
+\end{figure}

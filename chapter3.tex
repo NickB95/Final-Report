@@ -1,57 +1,82 @@
 \chapter{Design}
-In this Design section, I'll explain how and why I chose the Software Architecture I did, and what tools I used to develop Inhale. I won't go into the details, just enough so that the Design choices are justified.
+In this Design section, I'll explain how and why I chose the Software Architecture I did, and what tools I used to develop Inhale. I won't go into the boring details, just enough so that the Design choices are justified.\\
 
-\section{Architecture Choice}
-
-As all of the datasets I'll be using for Inhale will be geographical datasets, meaning they all have a location attribute, it is imperative that they are displayed on a map. Trying to make any sense of a geographical dataset without seeing it on a familiar map is nearly impossible.\\
-
-
+As all of the datasets used with Inhale are geographical datasets, meaning they all have a location attribute, it is imperative that they are displayed on a map. Trying to make any sense of a geographical dataset without seeing it on a familiar map is nearly impossible.\\
 
 \subsection{ArcGIS by Esri}
 
-ArcGIS is an incredibly powerful contextual tool for mapping and spatial reasoning. Its features are so well made that I initially thought using some form of this software would be the only viable solution. It allows you to produce good-looking, user-friendly maps with very few lines of code. It  also provides a mass of data processing tools, including hotspots analysis and data correlation.\\
+ArcGIS is an incredibly powerful contextual tool for mapping and spatial reasoning. Availible both online and to download as a desktop application. Its features are so well made that I initially thought using some form of this software would be the only viable solution. It allows you to produce good-looking, user-friendly maps with very few lines of code. It  also provides a mass of data processing tools, including hotspots analysis and data correlation.\\
 
-Ultimately, I chose not to go with ArcGIS because it costs around £1200 for one license. However I also wanted to implement my own algorithms, using ArcGIS would not leave me with much to implement, and after all, this is a computer science project. I can see how ArcGIS could be incredibly useful for businesses and marketing/pr.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{esridesktop}
+\label{fig:esri}
+\caption{An example of what Esri's ArcGIS can do \cite{esridesktop}}
+\end{center}
+\end{figure}
+
+Ultimately, I chose not to go with ArcGIS because it costs around \pounds1200 for one license. I also wanted to implement my own algorithms, using ArcGIS would not leave me with much to implement on the algorithm side, and after all, this is a computer science project. I can see how ArcGIS could be incredibly useful for businesses and marketing.
 
 \subsection{Desktop Mapping Tools}
 
 There are various desktop mapping tools available, even open source options that have a good variety of features. The main issue with this style of mapping software is it's expandability, accessibility and familiarity.\\
 
-Although tools like MapSphere allow you to make 3rd party plugins to expand the standard application with your own features, the features you're given access to when developing those plugins is quite limited. I want the scope to be able to implement whatever I want. 
-Being a desktop application, you're cutting down your potential users, not everyone wants to download an application, it feels too heavy and sluggish for modern users when you can access perfectly able maps from our pockets in the form of smartphone apps and websites. I wanted Inhale to be familiar to the user, I wanted to use controls people are used to using from their everyday use of Google Maps, Waze etc. All of the free desktop applications I tried felt very old and sluggish.\\
+Although tools like MapSphere allow you to make 3rd party plugins to expand the standard application with your own features, the features you're given access to when developing those plugins is quite limited. I want the scope to be able to implement whatever I want.\\
+
+Creating a desktop application, you're instantly cutting down your potential users, not everyone wants to download an application, it feels too heavy and sluggish for modern users when you can access perfectly able maps from our pockets in the form of smartphone apps and websites. I wanted Inhale to be familiar to the user, I wanted to use controls people are familiar with from their everyday use of Google Maps, Waze etc. All of the free desktop applications I tried felt very old and sluggish.\\
 
 \subsection{Google Maps}
 
 After playing around with ArcGIS and desktop mapping tools, I was aiming more towards a solution involving a dynamic mapping provider. Google Maps does not need an introduction. Google have an API that allows developers to implement their own features, toolbars and map tiles. The API can provide maps on various platforms from Android, iOS, javascript and more.\\
 
-The biggest draw towards Google Maps is their places API, it allows you to search for establishments, geographic locations, or prominent points of interest in a well-defined area around a point \cite{googlePlaces}. This would be incredibly useful for Inhale as once a hotspot is identified, you could search for nearby places that may be contributing to the symptoms in that area. The only problem here is that it's very difficult to implement a general approach to getting nearby places that have an effect. Google sort their places by type, the types are aimed towards general public use. They're in categories such as art gallery, bakery, bank, pharmacy, hospital. Whilst it could be argued that you could count the number of commercial premises nearby, but I don't believe this is enough to provide any sort of answer to allergy hotspots.\\
+The biggest draw towards Google Maps is their places API, it allows you to search for establishments, geographic locations, or prominent points of interest in a well-defined area around a point \cite{googlePlaces}. This would be incredibly useful for Inhale as once a hotspot is identified, you could search for nearby places that may be contributing to the symptoms in that area. The only problem here is that it's very difficult to implement a general approach to getting nearby places that might have an effect on allergy symptoms. Google organise places by type, types are aimed towards general public use. They're in categories such as art gallery, bakery, bank, pharmacy, hospital. Whilst it could be argued that you could count the number of commercial premises nearby, I don't believe this is enough to provide any sort of answer to why allergies are so prevelant in an area.\\
 
-Google Map's main downfall is the lack of customisability, it lacks some features compared to other mapping options.
-
-If Google ever increases the number of categories, or maybe include more general options such as "industrial" or "factory" then it would definitely be the best option.\\
+Google Map's main downfall is the lack of expandability, it lacks some features compared to other mapping options. If Google ever increases the number of categories for Places, or maybe include more general options such as industrial or factory then it could absolutely be considered as the best option.\\
 
 \subsection{Leaflet}
 
 Leaflet is a javascript library for mobile-friendly interactive apps \cite{leaflet}. Leaflet is comparable to Google Maps in that it has many of the same features. Leaflet is open source, has many third party plugins with a thriving community contributing daily towards building a versatile dynamic mapping tool.\\
 
-I decided to use Leaflet for my project as it is the most customisable of all the options investigated so far. It allows me to develop whatever I want to, and make my map look exactly how I want.\\
+Leaflet is the most customisable of all the options investigated so far. It allows me to develop whatever I want to in terms of behind the scenes processing, and make my map look exactly how I want, see \ref{fig:leafletexf} for and example of what you can do with Leaflet. The main downsides could be that it does not provide any spatial reasoning tools, nor does it have any built-in place recognition like Google.\\
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{leafletexp}
+\label{fig:leafletexf}
+\caption{Hexbins using Leaflet}
+\end{center}
+\end{figure}
 
 One particular third party plugin that drew me towards Leaflet was heatmap.js. Heatmaps seem like the best way to present the results of a hotspot identification algorithm. After testing the built-in Google Maps heatmap, I was disappointed with both the speed and custom options available.\\
 
+\section{Software Environment}
+
+My environment options for Inhale were to make a Desktop Application for either Windows or MacOS, a mobile app or a web application.\\
+
+I decided against making a desktop app for any platform as by going with this route it limits the number of users instantly. Whilst the last two versions of Windows make up around 65\% of the Desktop market, that's still a potential 35\% of users that are completely unable to use my software \cite{windows}. As this project is likely to be shown to potential employers, it would be nice to have it on a platform that is easier to setup and get running. I want to avoid compatibility issues and requiring updates to run with new .NET versions for example.\\
+
+A mobile application on either main platform was a strong contender. The fact that Android has recently overtaken Windows as the most popular operating system for Internet users \cite{android} means that I wouldn't be ruling out many users from using my application. The decision to stay away from a mobile application for this project was mainly due to wanting the project to be designed with research usage in mind. These users would be likely to want to use the more advanced features of Inhale which would require more screen real estate to get the benefit. Furthermore, I want users to be able to upload their own datasets. I don't think research users store their datasets on their mobiles. It just makes sense to build this project in a standard web environment.\\
+
 Leaflet was chosen because it can be used in a web format, it is very customisable and it has a lively community contributing to features all the time. I would be easy to add necessary features further down the line.
-
-\section{Leaflet}
-
-Talk about how you use leaflet.
-
-So, once the data is ready to be displayed, you pass to leaflet as heatmap layer.
-
-Deals with layers
-
-Tiles - Simplicity - familiarity
 
 \section{Development Tools}
 
-Tableau
+Tableau proud themselves on the fast processing of big data. They offer a massive amount of data processing tools, including visualising map data very quickly and easily. Thanks to their free student license, this ease of viewing geographical datasets made it my first choice of software when exploring new datasets. It allowed me to rule out sets very quickly without wasting time.\\
 
-Chrome dev tools
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{tab}
+\label{fig:tabf}
+\caption{Tableau, an excellent data processing tool}
+\end{center}
+\end{figure}
+
+Google's development tools included in their Chrome browser was very useful troubleshooting and debugging during development. It was particularly useful in making sure I was changing the correct CSS elements to make things look right.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=1\textwidth]{devtools}
+\label{fig:devtoolsf}
+\caption{Google Chrome's development tools in action}
+\end{center}
+\end{figure}

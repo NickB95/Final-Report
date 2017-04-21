@@ -19,7 +19,7 @@ Allergy induced asthma causes day-to-day, life impacting symptoms. The causes of
   \item Emotions: including stress or laughter
   \item Weather Conditions: including sudden changes in temperature, cold air, windy days, thunderstorms and hot, humid days
   \item Infections: particularly infections of the upper airways, such as colds and flu
-\end{itemize}\begin{center}Adapted from \cite{urlasthmacauses}\end{center}\\
+\end{itemize}\begin{center}Adapted from \cite{urlasthmacauses}\end{center}
 
 As you can see, there is a huge variety of factors contributing to allergies. It would be impossible to cover all of these in my one year project. I am going to focus on Airborne Irritants and Allergens.
 
@@ -71,7 +71,7 @@ Whilst early testing and development involved many datasets, I decided on two ma
 
 The data.gov website has road traffic count data available for public use. The set contains  750,000 entries from major road traffic counts at locations all over the UK. The sets give a location of the Centre Point of the count and for the northmost and southmost junctions on either side of the Centre Point. For each record, the counts for different vehicle types are given. Vehicles are categorised into Cars, Buses, Large Goods Vehicles (LGV), Heavy Goods Vehicle Rigid axle (HGVRx) and HGVAx for articulated HGV's where x is the number of axles of the HGV.\\
 
-See \ref{RoadTrafficData} for a simplified version of the dataset.\\
+See Table \ref{RoadTrafficData} for a simplified version of the dataset.\\
 
 The second set used is a dataset of the large urban areas in the UK. The data is fairly simple consisting of a location feature in the form of a Latitude and Longitude and a name for the area. I used this dataset as a guide, it is not used for any particular research benefit or to make any conclusions.\\
 
@@ -92,7 +92,7 @@ S Ref E&S REF N&Road&A REF E&A REF N&Hour&CAR&BUS&LGV&HGVR2&...\\\hline
 
 \section{Using Datasets}
 
-The number of people suffering from allergic rhinitis is rising\cite{allergyrising}, and whilst increased carbon emissions are lengthening the pollen season \cite{co2pollen}, there are not significantly more pollen producing plants and trees year on year.\\
+The number of people suffering from allergic rhinitis is rising , and whilst increased carbon emissions are lengthening the pollen season, there are not significantly more pollen producing plants and trees year on year \cite{co2pollen, allergyrising}.\\
 
 The main pollutants emitted by combustion engine vehicles are;\cite{vehcemis}
 
@@ -107,25 +107,31 @@ It has been proven that these pollutants, whilst maybe not associated with hay f
 \section{Existing Applications}
 \label{sec:diagrams}
 
-There are not many directly relevant applications. I think the reason for this is that in order to produce a meaningful application you need a well-formed dataset. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected it's not going to be possible to make educated conclusions on allergy hotspots.\\
+There are not many directly relevant applications. I think the reason for this is that in order to produce a meaningful application you need a well-formed dataset. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected it's not going to be possible to make educated conclusions on allergy hotspots. I didn't find any existing applications that satisfied this criteria.\\
 
-Looking at other applications did help highlight that I really was not a fan of using markers to represent any dense data.
+Looking at other general mapping applications helped highlight that I really was not a fan of using markers to represent any dense data.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.05\textwidth]{marker}
+\caption{Marker}\label{fig:marker}
+\end{figure}
 
 
 
 \subsection{Britain Breathing}
-Britain Breathing have a Data Visualiser on their website. It provides a simple display of the allergy data for a particular data range and a particular data value. At the time of writing this report, the Visualiser is not working so I can only display a screenshot of the interface and not the actual visualisation.
+Britain Breathing themselves have a Data Visualiser on their website. It provides a simple display of the allergy data collected in a particular data range and for a particular data value. At the time of writing this report, the Visualiser is not working so I can only display a screenshot of the interface without the map containing the visualisation.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{bbvisinterface}
-\caption{Figure Britain Breathing Visualiser Interface}
+\caption{Britain Breathing Visualiser Interface}
 \end{center}
 \end{figure}
 
 \subsection{Pollen forecast}
 
-The closest you can get to Inhale is pollen forecast services such as Pollen.com's Allergy forecast Map. As the name suggests it only shows the pollen forecasts, not allergy symptoms, and whilst this will have some correlation to the allergy symptoms, pollen is only a small part of the problem.\\
+The closest you can get to Inhale is a pollen forecast service such as Pollen.com's Allergy forecast Map. As the name suggests it only shows the pollen forecasts, not allergy symptoms, and whilst this will have some correlation to the allergy symptoms, pollen is only a small part of the problem.\\
 
 To get a good indication of allergy symptoms, unsurprisingly, you need allergy symptom data.\\
 

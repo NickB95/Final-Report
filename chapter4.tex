@@ -42,6 +42,7 @@ Upon zooming in and inspecting the data I also found that some roads were stored
 I created a java program to process the data before being stored on the server. Java was chosen purely because I have most experience with it and I knew exactly how to read and write files, making it a good choice for pre-processing the Road Traffic data. For each entry, counts are discarded if the length of the distance between the junction before and the junction after is longer than 200km or if the road is shorter than 5km and has a density in the lower 5\% of the data. Removing the smaller roads like this removes the mess of small roads with negligible traffic in places like the north of Scotland. These roads don't provide much information and therefore do not help to find hotspots, they just make the map look cluttered.\\
 
 \subsection{Analysis Field}
+\label{sec:anal}
 
 The Britain Breathing dataset has many attributes that are relevant to allergy symptoms.\\
 

@@ -1,16 +1,16 @@
 \chapter{Background}
 \label{cha:back}
 
-In this chapter I will cover the context of my project to allow a reader to understand the more complex parts of the report to come. First I will explain the different symptoms that can be felt from hay fever and how they might be caused by different allergens. I will then talk about the main data set used throughout and how I interpreted the data to produce meaningful results.
+In this chapter I will cover the context of my project to allow the reader to understand the more complex parts of the report to come. First I will explain the different symptoms of hay fever and how they might be caused by different allergens. I will then talk about the main data set used throughout and how I interpreted the data to produce meaningful results.
 
 \section{Seasonal Allergies}
-A massive 44\% of Britons suffer from at least one allergy, most of those suffering from a form of a seasonal allergy. Allergies are on the rise even with modern allergy medication improving.
-\cite{mintelallergy}
+A massive 44\% of Britons suffer from at least one allergy, the majority suffering from some form of a seasonal allergy \cite{mintelallergy}. Allergies are on the rise, even with modern allergy medication continuously improving \cite{mintelallergy}. It is clear that something needs to be done to help those who suffer.\\
+
 
 \subsection{Asthma}
-When talking about hay fever, I think most assume that it only affects the nose. However, in a study by Eur Respir J. it was found that 20.4\% of allergy sufferers also self-reported suffering from asthma\cite{rhinitis}. By 2025, asthma will represent the most prevalent chronic childhood disease and result in one of the highest health care costs, mainly due to the need for ongoing treatment throughout the patients life\cite{childhood}. Despite many decades of research, we do not have a complete solution to the problem. The best we can do is limit exposure, Inhale will help with this by highlighting areas with unusually high occurrences of particular symptoms.
+When talking about hay fever, most people assume that it only affects the nose. However, in a study by Eur Respir J, it was found that 20.4\% of allergy sufferers also self-reported suffering from asthma \cite{rhinitis}. By 2025, it is predicated that asthma will represent the most prevalent chronic childhood disease and result in one of the highest health care costs, primarily due to the need for ongoing treatment throughout the patients life \cite{childhood}. Despite many decades of research, we do not have a complete working solution to the problem. The best we can do is limit exposure, Inhale will help with this by highlighting areas with unusually high occurrences of particular symptoms.\\
 
-Allergy induced asthma causes day-to-day, life impacting symptoms. The causes of asthma below clearly indicate allergens and traditional hay fever triggers are also related to asthma causes.\\
+Listed below are the main causes of allergy induced asthma, the effects of which can impact everyday life of the sufferer.\\
 
 
 \begin{itemize}
@@ -21,7 +21,7 @@ Allergy induced asthma causes day-to-day, life impacting symptoms. The causes of
   \item Infections: particularly infections of the upper airways, such as colds and flu
 \end{itemize}\begin{center}Adapted from \cite{urlasthmacauses}\end{center}
 
-As you can see, there is a huge variety of factors contributing to allergies. It would be impossible to cover all of these in my one year project. I am going to focus on Airborne Irritants and Allergens.
+There is a large variety of factors contributing to allergy induced asthma. It would be impossible to cover all aspects of these in this report. I am going to focus on the effects of Airborne Irritants and Allergens.
 
 
 \section{Datasets}
@@ -30,9 +30,9 @@ In this section, I will describe the structure and features of the datasets used
 
 \subsection{Britain Breathing}
 
-Britain Breathing is a Citizen Science project run by the British Society for Immunology, Royal Society of Biology and the University of Manchester Immunology Group. They conduct research into the causes and treatment of allergies. To aid their research, they collect data on seasonal allergies using a simple but effective mobile application available on Android.\\
+Britain Breathing is a Citizen Science project run by the British Society for Immunology, Royal Society of Biology and the University of Manchester Immunology Group, who conduct research into the causes and treatment of allergies. To aid their research, they collect data on seasonal allergies using a simple but effective mobile application available on the Android operating system. Their aim is to get allergy sufferers to submit their symptoms regularly so that they can build solutions to the problem.\\
 
-When setting up the application, you're asked standard registration questions such as your age, gender and then whether you suffer from pre-existing allergy related issues such as asthma and hay fever. In everyday use of the Britain Breathing app you are asked to rate the severity of your allergy related symptoms on that particular day. You are also asked whether you have taken your allergy medication for that day, without specifying exactly what you take. This data is collected along with your location to be stored by Britain Breathing.
+When setting up the application, you are asked standard registration questions such as your age, gender, and whether you suffer from pre-existing allergy related issues such as asthma and hay fever. In everyday use of the Britain Breathing app you are asked to rate the severity of your allergy related symptoms on each day. You are also asked whether you have taken your allergy medication for that day. This data is collected along with your location to be stored by Britain Breathing.
 
 \begin{figure}[H]
 \begin{center}
@@ -43,16 +43,13 @@ When setting up the application, you're asked standard registration questions su
 \end{center}
 \end{figure}
 
-Dr. Markel Vigo works with the Britain Breathing project, he was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values corresponding to the questions asked in the application. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
+Dr Vigo works with the Britain Breathing project, and was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values corresponding to the questions asked in the application. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
 
-See \ref{bbdatatable} for an example of the data provided by Britain Breathing.\\
-
-The dataset provided covers the nose, eyes and breathing symptoms. It would be too much work to try to link each of these areas to specific body parts to specific causes causes. These parts of the body are all interlinked, in very close proximity, it makes sense to try to combine them. In Section \ref{sec:anal}, I'll go into more detail as to how I combine these problematic areas into one summary field.\\
+The dataset provided covers nose, eye and breathing symptoms, see Table \ref{bbdatatable}. As these parts of the body are all interlinked in very close proximity, it makes sense to try to combine them. In Section \ref{sec:anal}, I will go into more detail as to how I combine these problematic areas into one value that summarises them.\\
 
 
-\begin{table}
+\begin{table}[H]
 \begin{center}
-Britain Breathing Allergy Symptoms\\
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c}\hline\hline
 Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\\hline
 0&0&0&0&1&1&0&54.10&-2.39\\
@@ -60,41 +57,38 @@ Breathing&Eyes&How Feeling&Nose&Taken Meds&Asthma&Hay Fever&Latitude&Longitude\\
 3&1&0&3&1&1&1&53.24&-2.34\\\hline\hline
 \end{tabular}
 \end{center}
-\caption{A Simplified sample of the 18,386 record Britain Breathing dataset}\label{bbdatatable}
+\caption{A Simplified sample of the 18,386 record Britain Breathing dataset}
+\label{bbdatatable}
 \end{table}
 
 The Britain Breathing dataset will be the base for the entire project. Most of my time was spent with this set establishing a good hotspot identification algorithm and presenting it on a map.
 
 \subsection{Other Datasets}
 
-Whilst early testing and development involved many datasets, I decided on two main sets to use for the final version of Inhale.\\
+Whilst early testing and development involved many datasets, I decided on two main sets to use for comparison to the Britain Breathing dataset.\\
 
-The data.gov website has road traffic count data available for public use. The set contains  750,000 entries from major road traffic counts at locations all over the UK. The sets give a location of the Centre Point of the count and for the northmost and southmost junctions on either side of the Centre Point. For each record, the counts for different vehicle types are given. Vehicles are categorised into Cars, Buses, Large Goods Vehicles (LGV), Heavy Goods Vehicle Rigid axle (HGVRx) and HGVAx for articulated HGV's where x is the number of axles of the HGV.\\
-
-See Table \ref{RoadTrafficData} for a simplified version of the dataset.\\
-
-The second set used is a dataset of the large urban areas in the UK. The data is fairly simple consisting of a location feature in the form of a Latitude and Longitude and a name for the area. I used this dataset as a guide, it is not used for any particular research benefit or to make any conclusions.\\
+The data.gov website provides counts for Road Traffic data available for public use. The set contains 750,000 entries from major road traffic counts at locations all over the UK. They give a location of the Centre Point of the count, that is, where the counter was when recording the traffic. The northmost and southmost junctions on either side of the Centre Point. For each record, the counts for different vehicle types are given. Vehicles are categorised into Cars, Buses, Large Goods Vehicles (LGV), Heavy Goods Vehicle Rigid axle (HGVRx) and HGVAx for articulated HGV's where x is the number of axles of the HGV. See Table \ref{RoadTrafficData} for a simplified version of the dataset.\\
 
 
-\begin{table}
+\begin{table}[H]
 \begin{center}
-Road Traffic\\
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline\hline
 S Ref E&S REF N&Road&A REF E&A REF N&Hour&CAR&BUS&LGV&HGVR2&...\\\hline
 90200&10585&A3112&90320&10530&7&24&6&13&5&...\\
 380927&405391&M60&382819&405920&15&7642&18&300&64&...\\
 380927&405391&M60&382819&405920&17&10042&32&654&103&...\\\hline\hline
 \end{tabular}
-
 \caption{Simplified example of the 750,000 record Road Traffic dataset. 20 columns have been removed for viewing purposes.}\label{RoadTrafficData}
 \end{center}
 \end{table}
 
+The second set used is a dataset of the large urban areas in the UK. The data is fairly simple consisting of a location feature in the form of a Latitude and Longitude and a name for the area. I used this dataset as a guide in the hope that it might help highlight interesting areas. Areas that are not in a large urban area but are indicated as a hotspot should be investigated further. However, it is not used for any particular research benefit, nor is it used to make any conclusions.\\
+
 \section{Using Datasets}
 
-The number of people suffering from allergic rhinitis is rising , and whilst increased carbon emissions are lengthening the pollen season, there are not significantly more pollen producing plants and trees year on year \cite{co2pollen, allergyrising}.\\
+The number of people suffering from allergic rhinitis is rising, and whilst increased carbon emissions and global warming are lengthening the pollen season, there are not significantly more pollen producing plants and trees year on year \cite{co2pollen, allergyrising}.\\
 
-The main pollutants emitted by combustion engine vehicles are;\cite{vehcemis}
+The main pollutants emitted by combustion engine vehicles are:
 
 \begin{itemize}
     \item CO
@@ -102,25 +96,19 @@ The main pollutants emitted by combustion engine vehicles are;\cite{vehcemis}
     \item $NO_x$
 \end{itemize}
 
-It has been proven that these pollutants, whilst maybe not associated with hay fever symptoms by most, are actually all directly associated with allergic rhinitis\cite{airPollution}. With this in mind, we can compare the Road Traffic dataset with the Britain Breathing dataset on the same map to try to find some correlation.\\
+\begin{center}
+Adapated from \cite{vehcemis}
+\end{center}
+
+It has been proven that these pollutants, whilst perhaps not associated with hay fever symptoms by most, are actually all directly associated with allergic rhinitis\cite{airPollution}. With this in mind, we can compare the Road Traffic dataset with the Britain Breathing dataset on the same map to try and find some correlation.\\
 
 \section{Existing Applications}
 \label{sec:diagrams}
 
-There are not many directly relevant applications. I think the reason for this is that in order to produce a meaningful application you need a well-formed dataset. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected it's not going to be possible to make educated conclusions on allergy hotspots. I didn't find any existing applications that satisfied this criteria.\\
-
-Looking at other general mapping applications helped highlight that I really was not a fan of using markers to represent any dense data.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.05\textwidth]{marker}
-\caption{Marker}\label{fig:marker}
-\end{figure}
-
-
+There are few directly relevant applications. I think the reason for this is that in order to produce a meaningful application you need a well-formed dataset. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected by allergens it's not possible to make educated conclusions on allergy hotspots. I didn't find any existing applications that satisfied this criteria.\\
 
 \subsection{Britain Breathing}
-Britain Breathing themselves have a Data Visualiser on their website. It provides a simple display of the allergy data collected in a particular data range and for a particular data value. At the time of writing this report, the Visualiser is not working so I can only display a screenshot of the interface without the map containing the visualisation.
+Britain Breathing have a Data Visualiser on their website. It provides a simple display of the allergy data collected in a particular data range, for a particular data value. At the time of writing this report, the Visualiser is not working so I can only display a screenshot of the interface without the map containing the visualisation.
 
 \begin{figure}[H]
 \begin{center}
@@ -131,13 +119,23 @@ Britain Breathing themselves have a Data Visualiser on their website. It provide
 
 \subsection{Pollen forecast}
 
-The closest you can get to Inhale is a pollen forecast service such as Pollen.com's Allergy forecast Map. As the name suggests it only shows the pollen forecasts, not allergy symptoms, and whilst this will have some correlation to the allergy symptoms, pollen is only a small part of the problem.\\
+The most comparable applications to Inhale are pollen forecast services such as Pollen.com's allergy forecast map. As the name suggests it only shows the pollen forecasts, not allergy symptoms. Whilst pollen is a major contributor to allergy symptoms, it needs to be combined with the other problematic allergens to be make credible conclusions.\\
 
-To get a good indication of allergy symptoms, unsurprisingly, you need allergy symptom data.\\
+Therefore, without the data from an organisation like Britain Breathing, you can't make a comparable application.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{pollenforecast}
 \caption{Pollen.com Allergy Forecast Map}
 \end{center}
+\end{figure}
+
+\section{Remarks}
+
+After looking at many other mapping applications, it has become clear to me that using the standard Marker to represent points on a map can be used if and only if there are a very low density of points. Any other scenario results in a map that is totally incomprehensible.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.05\textwidth]{marker}
+\caption{Marker}\label{fig:marker}
 \end{figure}

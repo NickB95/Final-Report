@@ -1,7 +1,7 @@
 \chapter{Background}
 \label{cha:back}
 
-In this chapter I will cover the context of my project to allow the reader to understand the more complex parts of the report to come. First I will explain the different symptoms of hay fever and how they might be caused by different allergens. I will then talk about the main data set used throughout and how I interpreted the data to produce meaningful results.
+In this chapter I will cover the context of my project to allow the reader to understand the more complex parts of the report to come. First I will explain the different symptoms of hay fever and how they might be caused by different allergens. I will then talk about the main dataset used throughout and how I interpreted the data to produce meaningful results.
 
 \section{Seasonal Allergies}
 A massive 44\% of Britons suffer from at least one allergy, the majority suffering from some form of a seasonal allergy \cite{mintelallergy}. Allergies are on the rise, even with modern allergy medication continuously improving \cite{mintelallergy}. It is clear that something needs to be done to help those who suffer.\\
@@ -43,9 +43,9 @@ When setting up the application, you are asked standard registration questions s
 \end{center}
 \end{figure}
 
-Dr Vigo works with the Britain Breathing project, and was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values corresponding to the questions asked in the application. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be represented in the final visualisation as they're obviously being exposed to a significant amount of allergens.\\
+Dr Vigo works with the Britain Breathing project, and was kind enough to provide me with their dataset from September 2016. This dataset contains 18,386 records from all over the UK. The data contains values corresponding to the questions asked in the application. They also ask whether or not the user has taken their medication today, this field is particularly useful as it can be used as a multiplier. If someone has severe nose, eye and breathing symptoms and they have taken their medication, then this should be expressed in the final visualisation as they're clearly being exposed to a significant amount of allergens.\\% avoid 'obviously', rephrase
 
-The dataset provided covers nose, eye and breathing symptoms, see Table \ref{bbdatatable}. As these parts of the body are all interlinked in very close proximity, it makes sense to try to combine them. In Section \ref{sec:anal}, I will go into more detail as to how I combine these problematic areas into one value that summarises them.\\
+The dataset covers nose, eye and breathing symptoms, see Table \ref{bbdatatable}. As these parts of the body are all interlinked in very close proximity, it makes sense to try to combine them. In Section \ref{sec:anal}, I will go into more detail as to how I combine these problematic areas into one value that summarises them.\\
 
 
 \begin{table}[H]
@@ -82,7 +82,7 @@ S Ref E&S REF N&Road&A REF E&A REF N&Hour&CAR&BUS&LGV&HGVR2&...\\\hline
 \end{center}
 \end{table}
 
-The second set used is a dataset of the large urban areas in the UK. The data is fairly simple consisting of a location feature in the form of a Latitude and Longitude and a name for the area. I used this dataset as a guide in the hope that it might help highlight interesting areas. Areas that are not in a large urban area but are indicated as a hotspot should be investigated further. However, it is not used for any particular research benefit, nor is it used to make any conclusions.\\
+The second set used is a dataset of the large urban areas in the UK. The data is fairly simple consisting of a location feature in the form of a Latitude and Longitude and a name for the area. I used this dataset as a guide in the hope that it might help highlight interesting areas. Areas that are not in a large urban area but are indicated as a hotspot should be investigated further. However, it is not used for any particular research benefit, nor is it used to draw any conclusions.\\
 
 \section{Using Datasets}
 
@@ -105,7 +105,7 @@ It has been proven that these pollutants, whilst perhaps not associated with hay
 \section{Existing Applications}
 \label{sec:diagrams}
 
-There are few directly relevant applications. I think the reason for this is that in order to produce a meaningful application you need a well-formed dataset. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected by allergens it's not possible to make educated conclusions on allergy hotspots. I didn't find any existing applications that satisfied this criteria.\\
+There are few directly relevant applications. The reason for this is that in order to produce a meaningful application a well-formed dataset is required. In order for a dataset to be relevant, it needs to be of a reasonable size, have a good range of locations and a diverse demographic. Without collecting data from the people directly affected by allergens it's not possible to make educated conclusions on allergy hotspots. Currently there are no existing applications that satisfy this criteria.\\
 
 \subsection{Britain Breathing}
 Britain Breathing have a Data Visualiser on their website. It provides a simple display of the allergy data collected in a particular data range, for a particular data value. At the time of writing this report, the Visualiser is not working so I can only display a screenshot of the interface without the map containing the visualisation.
@@ -119,9 +119,9 @@ Britain Breathing have a Data Visualiser on their website. It provides a simple 
 
 \subsection{Pollen forecast}
 
-The most comparable applications to Inhale are pollen forecast services such as Pollen.com's allergy forecast map. As the name suggests it only shows the pollen forecasts, not allergy symptoms. Whilst pollen is a major contributor to allergy symptoms, it needs to be combined with the other problematic allergens to be make credible conclusions.\\
+The most comparable applications to Inhale are pollen forecast services such as Pollen.com's allergy forecast map. As the name suggests it only displays pollen forecasts, not allergy symptoms. Whilst pollen is a major contributor to allergy symptoms, it needs to be combined with the other problematic allergens to be make credible conclusions.\\
 
-Therefore, without the data from an organisation like Britain Breathing, you can't make a comparable application.
+Therefore, without the data from an organisation like Britain Breathing, it is not possible to make a comparable application.
 
 \begin{figure}[H]
 \begin{center}
@@ -132,7 +132,7 @@ Therefore, without the data from an organisation like Britain Breathing, you can
 
 \section{Remarks}
 
-After looking at many other mapping applications, it has become clear to me that using the standard Marker to represent points on a map can be used if and only if there are a very low density of points. Any other scenario results in a map that is totally incomprehensible.
+After looking at many other mapping applications, it has become clear that using the standard Marker to represent points on a map can be used if and only if there are a very low density of points. Any other scenario results in a map that is totally incomprehensible.
 
 \begin{figure}[H]
 \centering
